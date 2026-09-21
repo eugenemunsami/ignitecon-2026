@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>IgniteCon 2026 — The Unconventional Business Bootcamp</title>
+<meta name="description" content="Four days that turn ambitious South African founders into investor-ready, growth-ready operators. 28–31 October, 26 Degrees South.">
+<meta property="og:title" content="IgniteCon 2026">
+<meta property="og:description" content="Four days of fire. Twenty growth-stage founders. One market access moment.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="./assets/hero-bonfire.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --bg-elev: #141412;
+  --bg-warm: #1a1310;
+  --fg: #F5F1E8;
+  --fg-mute: #9c988e;
+  --fg-subtle: #6b665e;
+  --fire: #F37021;
+  --fire-hot: #FCB614;
+  --fire-deep: #B0480F;
+  --ember-glow: rgba(243, 112, 33, 0.14);
+  --border: rgba(245, 241, 232, 0.08);
+  --border-hi: rgba(245, 241, 232, 0.18);
+  --display: 'Bebas Neue', Impact, sans-serif;
+  --body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: var(--fire); color: var(--bg); }
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 720px) { .container { padding: 0 20px; } }
+
+section {
+  padding: 140px 0;
+  position: relative;
+}
+@media (max-width: 768px) { section { padding: 80px 0; } }
+
+/* ─── UTILITIES ─── */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fire);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--fire);
+}
+
+.section-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  margin-bottom: 80px;
+  text-wrap: balance;
+  color: var(--fg);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 34px;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+  transition: transform 200ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out), color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: var(--fire);
+  color: #1A0A00;
+  border-color: var(--fire);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: var(--fire-hot);
+    border-color: var(--fire-hot);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(243, 112, 33, 0.35);
+  }
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--border-hi);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-ghost:hover {
+    border-color: var(--fire);
+    color: var(--fire);
+    background: rgba(243, 112, 33, 0.04);
+  }
+}
+.btn .arrow { transition: transform 200ms var(--ease-out); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0) 100%);
+  backdrop-filter: blur(0);
+  transition: backdrop-filter 300ms var(--ease-out), background 300ms var(--ease-out);
+}
+.nav.scrolled {
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+.nav-meta {
+  display: flex;
+  gap: 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.nav-meta a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+.nav-meta a:hover { color: var(--fire); }
+@media (max-width: 720px) {
+  .nav { padding: 16px 20px; }
+  .nav-meta { display: none; }
+}
+
+/* ─── EMBERS (floating particles on hero) ─── */
+.embers {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ember {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.5px);
+  animation: rise linear infinite;
+}
+@keyframes rise {
+  0%   { transform: translate3d(0, 100vh, 0) scale(1); opacity: 0; }
+  8%   { opacity: 0.9; }
+  50%  { transform: translate3d(20px, 40vh, 0) scale(0.9); opacity: 0.6; }
+  100% { transform: translate3d(-15px, -20vh, 0) scale(0.4); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .embers { display: none; }
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 120px 0 60px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: brightness(0.65) contrast(1.05);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 70%, rgba(243,112,33,0.14) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 45%, rgba(10,10,10,0.95) 100%);
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 800ms var(--ease-out) 200ms forwards;
+}
+.hero-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(88px, 18vw, 320px);
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+  color: var(--fg);
+  text-wrap: balance;
+  opacity: 0;
+  animation: fadeUp 900ms var(--ease-out) 300ms forwards;
+}
+.hero-title .accent { color: var(--fire); }
+.hero-lede {
+  font-family: var(--body);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--fg-mute);
+  max-width: 640px;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 900ms var(--ease-out) 500ms forwards;
+}
+.hero-lede em {
+  font-style: normal;
+  color: var(--fire);
+  font-weight: 500;
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-hi);
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 900ms var(--ease-out) 700ms forwards;
+}
+@media (max-width: 720px) {
+  .hero-meta { grid-template-columns: 1fr; gap: 24px; }
+}
+.hero-meta-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  margin-bottom: 8px;
+}
+.hero-meta-value {
+  font-family: var(--display);
+  font-size: 32px;
+  color: var(--fg);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 900ms var(--ease-out) 900ms forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── MARQUEE ─── */
+.marquee {
+  padding: 32px 0;
+  background: var(--fire);
+  color: #1A0A00;
+  overflow: hidden;
+  border-top: 1px solid var(--fire-deep);
+  border-bottom: 1px solid var(--fire-deep);
+}
+.marquee-track {
+  display: flex;
+  gap: 40px;
+  white-space: nowrap;
+  animation: scroll 32s linear infinite;
+  font-family: var(--display);
+  font-size: clamp(32px, 5vw, 64px);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 40px;
+}
+.marquee-track .dot {
+  width: 12px;
+  height: 12px;
+  background: #1A0A00;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ─── 2025 IN FRAMES (3D Parallax Unfurling Gallery) ─── */
+.frames {
+  position: relative;
+  width: 100%;
+  height: 500vh;
+  padding: 0;
+  background: #050505;
+  border-top: 1px solid var(--border);
+}
+.frames-intro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 100px 0 60px;
+  pointer-events: none;
+}
+.frames-intro .container { pointer-events: auto; }
+.frames-intro-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.frames-intro h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 100px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.frames-intro p {
+  color: var(--fg-mute);
+  max-width: 320px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.frames-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.frames-banner {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  max-width: 1920px;
+  margin: 0 auto;
+  will-change: width, height, border-radius, border-width;
+  border-style: solid;
+  border-color: #2c2738;
+  border-width: 4px;
+  width: 90vw;
+  height: 80vh;
+  border-radius: 48px;
+}
+.frames-perspective {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  perspective: 1000px;
+}
+.frames-vignette,
+.frames-vignette-sides {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.frames-vignette {
+  box-shadow:
+    inset 0 100px 150px -50px rgba(0,0,0,1),
+    inset 0 -100px 150px -50px rgba(0,0,0,1);
+}
+.frames-vignette-sides {
+  box-shadow:
+    inset 150px 0 150px -50px rgba(0,0,0,1),
+    inset -150px 0 150px -50px rgba(0,0,0,1);
+}
+.frames-3d {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  width: 120vw;
+  height: 150vh;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform: rotateX(25deg) rotateY(-45deg) rotateZ(15deg) translateZ(-800px);
+}
+@media (min-width: 768px) {
+  .frames-3d { gap: 24px; }
+}
+.frames-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 22vw;
+  min-width: 200px;
+  will-change: transform;
+  pointer-events: auto;
+  transform: translateY(0%);
+}
+@media (min-width: 768px) {
+  .frames-col { gap: 24px; }
+}
+.frames-col[data-col="2"] { transform: translateY(-40%); }
+.frames-col[data-col="4"] { transform: translateY(-30%); }
+.frames-card {
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+  background: #111;
+  transition: transform 300ms var(--ease-out);
+  cursor: pointer;
+  position: relative;
+  will-change: transform;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .frames-card { height: 300px; }
+}
+@media (min-width: 768px) {
+  .frames-card { height: 400px; }
+}
+.frames-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 300ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .frames-card:hover { transform: scale(1.02); }
+  .frames-card:hover img { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frames { height: 100vh; }
+  .frames-3d, .frames-col, .frames-banner { transform: none !important; }
+  .frames-banner { width: 100%; height: 100vh; border-radius: 0; border-width: 0; }
+}
+
+/* ─── MANIFESTO ─── */
+.manifesto {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 200px 0;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.manifesto-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(1.1);
+}
+.manifesto-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.65) 50%, rgba(10,10,10,0.9) 100%),
+    radial-gradient(ellipse at center, transparent 20%, rgba(10,10,10,0.4) 80%);
+}
+.manifesto .container { position: relative; z-index: 1; }
+.manifesto-quote {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(48px, 8vw, 140px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  text-wrap: balance;
+  max-width: 1200px;
+  position: relative;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+}
+.manifesto-quote em {
+  font-style: normal;
+  color: var(--fire);
+  text-shadow: 0 0 40px rgba(243, 112, 33, 0.4);
+}
+
+/* ─── THE ARC ─── */
+.arc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.arc-header .section-title { margin-bottom: 0; max-width: 900px; }
+.arc-header p {
+  color: var(--fg-mute);
+  max-width: 320px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+@media (max-width: 1024px) { .chapter-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .chapter-grid { grid-template-columns: 1fr; } }
+.chapter {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+}
+.chapter-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.chapter-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out), filter 400ms var(--ease-out);
+  filter: brightness(0.5) grayscale(0.4);
+}
+.chapter-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.9) 100%);
+}
+@media (hover: hover) and (pointer: fine) {
+  .chapter:hover .chapter-bg img {
+    transform: scale(1.06);
+    filter: brightness(0.7) grayscale(0);
+  }
+}
+.chapter-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px 32px;
+}
+.chapter-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  color: var(--fire);
+  text-transform: uppercase;
+}
+.chapter-body {}
+.chapter-name {
+  font-family: var(--display);
+  font-size: clamp(40px, 4.5vw, 68px);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin-bottom: 20px;
+}
+.chapter-desc {
+  color: var(--fg-mute);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 300px;
+}
+.chapter-day {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+/* ─── THE TRIALS ─── */
+.trials {
+  background: var(--bg-warm);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.trials-header { margin-bottom: 80px; }
+.trials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+@media (max-width: 900px) { .trials-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .trials-grid { grid-template-columns: 1fr; } }
+.trial {
+  background: var(--bg);
+  padding: 48px 36px;
+  position: relative;
+  transition: background 300ms var(--ease-out);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.trial::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--fire);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .trial:hover {
+    background: var(--bg-elev);
+  }
+  .trial:hover::before {
+    transform: scaleX(1);
+  }
+}
+.trial-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.trial-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--fg-subtle);
+  text-transform: uppercase;
+}
+.trial-topic {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--fire);
+  text-transform: uppercase;
+  text-align: right;
+}
+.trial-body {}
+.trial-name {
+  font-family: var(--display);
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin-bottom: 20px;
+}
+.trial-desc {
+  color: var(--fg-mute);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.trial.field {
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-warm) 100%);
+}
+.trial.field .trial-topic { color: var(--fire-hot); }
+
+/* ─── VIDEO SECTION ─── */
+.video-section {
+  padding: 180px 0;
+  text-align: center;
+}
+.video-eyebrow { margin-bottom: 24px; justify-content: center; display: inline-flex; }
+.video-title {
+  font-family: var(--display);
+  font-size: clamp(56px, 10vw, 160px);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.video-title .accent { color: var(--fire); }
+.video-embed {
+  display: block;
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+  border: 1px solid var(--border);
+}
+.video-embed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 800ms var(--ease-out), filter 400ms var(--ease-out);
+  filter: brightness(0.7) contrast(1.05);
+}
+@media (hover: hover) and (pointer: fine) {
+  .video-embed:hover img {
+    transform: scale(1.03);
+    filter: brightness(0.85) contrast(1.05);
+  }
+}
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 96px;
+  height: 96px;
+  background: var(--fire);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 250ms var(--ease-out), background 200ms var(--ease-out), box-shadow 250ms var(--ease-out);
+  z-index: 2;
+}
+.video-play::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 28px solid #1A0A00;
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  margin-left: 4px;
+  transform: translateX(0);
+}
+@media (hover: hover) and (pointer: fine) {
+  .video-embed:hover .video-play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: var(--fire-hot);
+    box-shadow: 0 16px 60px rgba(243,112,33,0.5);
+  }
+}
+.video-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg);
+  padding: 10px 16px;
+  background: rgba(10,10,10,0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 4px;
+  border: 1px solid var(--border-hi);
+}
+
+/* ─── PROOF ─── */
+.proof {
+  background: var(--bg-warm);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 100px;
+}
+@media (max-width: 900px) {
+  .proof-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+.proof-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+}
+@media (max-width: 500px) { .proof-stats { grid-template-columns: 1fr; } }
+.stat-value {
+  font-family: var(--display);
+  font-size: clamp(80px, 12vw, 180px);
+  color: var(--fire);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  display: block;
+}
+.stat-label {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--fg-mute);
+  line-height: 1.5;
+  max-width: 220px;
+}
+.proof-image {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.proof-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05);
+}
+.testimonial {
+  max-width: 1000px;
+  padding: 60px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.testimonial::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--fire);
+}
+.testimonial-quote {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.15;
+  color: var(--fg);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+.testimonial-attr {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+@media (max-width: 720px) { .testimonial { padding: 40px 32px; } }
+
+/* ─── VENUE ─── */
+.venue-header {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  margin-bottom: 60px;
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .venue-header { grid-template-columns: 1fr; gap: 32px; }
+}
+.venue-header .section-title { margin-bottom: 0; }
+.venue-header p {
+  color: var(--fg-mute);
+  font-size: 17px;
+  line-height: 1.65;
+}
+.venue-bento {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(240px, 340px));
+  gap: 4px;
+}
+@media (max-width: 900px) {
+  .venue-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+@media (max-width: 500px) {
+  .venue-bento { grid-template-columns: 1fr; grid-template-rows: auto; }
+}
+.venue-tile {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 240px;
+}
+.venue-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out);
+  filter: contrast(1.05);
+}
+@media (hover: hover) and (pointer: fine) {
+  .venue-tile:hover img { transform: scale(1.06); }
+}
+.venue-tile-label {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg);
+  padding: 6px 12px;
+  background: rgba(10,10,10,0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 4px;
+  z-index: 2;
+}
+.venue-tile-hero { grid-column: span 1; grid-row: span 2; }
+@media (max-width: 900px) {
+  .venue-tile-hero { grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 500px) {
+  .venue-tile-hero { grid-column: span 1; }
+}
+.venue-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+  padding-top: 60px;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 720px) { .venue-facts { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+.venue-fact-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  margin-bottom: 8px;
+}
+.venue-fact-value {
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--fg);
+  letter-spacing: 0.01em;
+}
+
+/* ─── ESSENTIALS ─── */
+.essentials {
+  border-top: 1px solid var(--border);
+}
+.essentials-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+@media (max-width: 900px) { .essentials-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .essentials-grid { grid-template-columns: 1fr; } }
+.essential {
+  padding: 40px 32px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  transition: background 250ms var(--ease-out);
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (hover: hover) and (pointer: fine) {
+  .essential:hover { background: var(--bg-warm); }
+}
+.essential-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fire);
+  margin-bottom: 16px;
+}
+.essential-title {
+  font-family: var(--display);
+  font-size: 34px;
+  line-height: 0.95;
+  color: var(--fg);
+  margin-bottom: 20px;
+  letter-spacing: -0.005em;
+}
+.essential-body {
+  font-size: 14px;
+  color: var(--fg-mute);
+  line-height: 1.6;
+}
+
+/* ─── DOORS ─── */
+.doors {
+  background: var(--fire);
+  color: #1A0A00;
+  border-top: 1px solid var(--fire-deep);
+}
+.doors .eyebrow { color: #1A0A00; opacity: 0.8; }
+.doors .eyebrow::before { background: #1A0A00; }
+.doors-header {
+  margin-bottom: 60px;
+}
+.doors-title {
+  font-family: var(--display);
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: #1A0A00;
+  text-wrap: balance;
+  margin-top: 32px;
+}
+.door-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 900px) { .door-grid { grid-template-columns: 1fr; } }
+.door {
+  background: var(--bg);
+  color: var(--fg);
+  padding: 44px 36px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 420px;
+  transition: transform 300ms var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.door::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, var(--ember-glow) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .door:hover { transform: translateY(-6px); }
+  .door:hover::before { opacity: 1; }
+}
+.door-audience {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  color: var(--fire);
+  text-transform: uppercase;
+}
+.door-title {
+  font-family: var(--display);
+  font-size: 44px;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+.door-desc {
+  color: var(--fg-mute);
+  font-size: 14px;
+  line-height: 1.65;
+  flex-grow: 1;
+}
+.door .btn { align-self: flex-start; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 100px 0 40px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 80px;
+}
+@media (max-width: 720px) {
+  .footer-content { grid-template-columns: 1fr; gap: 32px; }
+}
+.footer-logo img { height: 44px; width: auto; margin-bottom: 24px; }
+.footer-desc {
+  color: var(--fg-mute);
+  max-width: 400px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.footer-col-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  margin-bottom: 20px;
+}
+.footer-col p, .footer-col a {
+  color: var(--fg-mute);
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+  text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+.footer-col a:hover { color: var(--fire); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--fg-subtle);
+}
+
+/* ─── FORM MODALS ─── */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.modal.open {
+  display: flex;
+  animation: modalFadeIn 240ms var(--ease-out);
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,10,0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.modal-panel {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-elev);
+  border: 1px solid var(--border-hi);
+  border-radius: 10px;
+  max-width: 680px;
+  width: 100%;
+  padding: 44px 44px 36px;
+  margin: auto 0;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  animation: modalPanelIn 320ms var(--ease-out);
+}
+.modal-panel-jotform {
+  padding: 40px 36px 32px;
+  max-width: 760px;
+}
+.modal-iframe {
+  width: 100%;
+  min-height: 640px;
+  border: 0;
+  background: var(--bg);
+  border-radius: 6px;
+  display: block;
+  margin-top: 8px;
+}
+.modal-iframe-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  color: var(--fg-mute);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  .modal-iframe { min-height: 560px; }
+}
+.modal-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--fire);
+  border-radius: 10px 10px 0 0;
+}
+@media (max-width: 640px) {
+  .modal-panel { padding: 32px 24px 28px; }
+  .modal { padding: 20px 12px; }
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg-mute);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1;
+  transition: color 150ms var(--ease-out), border-color 150ms var(--ease-out), background 150ms var(--ease-out);
+}
+.modal-close:hover {
+  color: var(--fg);
+  border-color: var(--border-hi);
+  background: rgba(255,255,255,0.03);
+}
+.modal-header { margin-bottom: 28px; }
+.modal-header .eyebrow { margin-bottom: 14px; }
+.modal-header h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(36px, 4vw, 52px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 12px;
+}
+.modal-header p {
+  color: var(--fg-mute);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 480px;
+}
+
+/* Form */
+.form-grid { display: grid; gap: 18px; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+.form-field { display: flex; flex-direction: column; gap: 8px; }
+.form-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+.form-label .req { color: var(--fire); margin-left: 2px; }
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.4;
+  transition: border-color 160ms var(--ease-out), background 160ms var(--ease-out);
+}
+.form-textarea { resize: vertical; min-height: 88px; }
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--fire);
+  background: rgba(243,112,33,0.03);
+}
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--fg-subtle); }
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F37021'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 36px;
+}
+.form-select option { background: var(--bg-elev); color: var(--fg); }
+
+/* Checkbox */
+.form-check {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.form-check input[type="checkbox"] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border-hi);
+  border-radius: 4px;
+  background: var(--bg);
+  cursor: pointer;
+  position: relative;
+  transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out);
+  margin-top: 1px;
+}
+.form-check input[type="checkbox"]:hover { border-color: var(--fire); }
+.form-check input[type="checkbox"]:checked {
+  background: var(--fire);
+  border-color: var(--fire);
+}
+.form-check input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 6px;
+  height: 10px;
+  border: solid #1A0A00;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.form-check span {
+  color: var(--fg-mute);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.form-check .req { color: var(--fire); }
+
+/* Trial select group */
+.trial-picks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 4px 0;
+}
+@media (max-width: 480px) { .trial-picks { grid-template-columns: 1fr; } }
+.trial-picks .form-check { padding: 8px 0; }
+
+/* Honeypot (hidden anti-spam field) */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+@media (max-width: 480px) { .form-actions .btn { flex: 1; justify-content: center; } }
+
+/* Success state */
+.modal-success {
+  display: none;
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+.modal.success .modal-form { display: none; }
+.modal.success .modal-header { display: none; }
+.modal.success .modal-success { display: block; }
+.modal-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--fire);
+  color: #1A0A00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 32px;
+  box-shadow: 0 0 40px rgba(243,112,33,0.4);
+}
+.modal-success h4 {
+  font-family: var(--display);
+  font-size: 44px;
+  line-height: 1;
+  color: var(--fg);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.modal-success p {
+  color: var(--fg-mute);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto 32px;
+}
+
+body.modal-open { overflow: hidden; }
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalPanelIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal.open, .modal-panel { animation: none; }
+}
+
+/* ─── REVEAL ON SCROLL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-eyebrow, .hero-title, .hero-lede, .hero-meta, .hero-cta { animation: none; opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    <img src="./assets/logo-white.png" alt="IgniteCon">
+  </div>
+  <div class="nav-meta">
+    <a href="#arc">The Arc</a>
+    <a href="#trials">The Trials</a>
+    <a href="#venue">The Setting</a>
+    <a href="#doors">RSVP</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="./assets/hero-bonfire.jpg" alt="IgniteCon 2025 bonfire installation with the IgniteCon logo glowing over an open fire">
+  </div>
+  <div class="embers" id="embers" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-eyebrow eyebrow">The Unconventional Business Bootcamp</div>
+    <h1 class="hero-title">IGNITECON <span class="accent">'26</span></h1>
+    <p class="hero-lede">Four days that separate the founders who scale from the ones who <em>stall</em>. Mindset, skills, market access — earned in the bush, not read in a slide deck.</p>
+
+    <div class="hero-meta">
+      <div>
+        <div class="hero-meta-label">Dates</div>
+        <div class="hero-meta-value">28 — 31 OCT</div>
+      </div>
+      <div>
+        <div class="hero-meta-label">Setting</div>
+        <div class="hero-meta-value">CRADLE MOON BUSH</div>
+      </div>
+      <div>
+        <div class="hero-meta-label">Cohort</div>
+        <div class="hero-meta-value">20 FOUNDERS</div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#doors" class="btn btn-primary">Reserve your seat <span class="arrow">→</span></a>
+      <a href="#trials" class="btn btn-ghost">See what happens inside</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>FUEL YOUR BUSINESS SPARK<div class="dot"></div>28 — 31 OCT 2026<div class="dot"></div>26 DEGREES SOUTH<div class="dot"></div>MULDERSDRIFT<div class="dot"></div>THE UNCONVENTIONAL BOOTCAMP<div class="dot"></div></span>
+    <span>FUEL YOUR BUSINESS SPARK<div class="dot"></div>28 — 31 OCT 2026<div class="dot"></div>26 DEGREES SOUTH<div class="dot"></div>MULDERSDRIFT<div class="dot"></div>THE UNCONVENTIONAL BOOTCAMP<div class="dot"></div></span>
+  </div>
+</div>
+
+<!-- ═══ MANIFESTO ═══ -->
+<section class="manifesto">
+  <video class="manifesto-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="./assets/hero-video-bg.mp4" type="video/mp4">
+  </video>
+  <div class="manifesto-video-overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom: 40px;">The Invitation</div>
+      <p class="manifesto-quote">THIS IS NOT ANOTHER WORKSHOP. IT IS <em>FOUR DAYS OF FIRE</em> — HARD TRUTHS, SHARPENED SKILLS, REAL BUYERS, AND THE FOUNDERS WHO ARE DONE PLAYING SMALL.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE ARC ═══ -->
+<section id="arc">
+  <div class="container">
+    <div class="reveal arc-header">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 24px;">The Arc</div>
+        <h2 class="section-title">INWARD. OUTWARD. INTO THE FIRE.</h2>
+      </div>
+      <p>Four days engineered as chapters. Each one builds on the last. Each one earns its place.</p>
+    </div>
+
+    <div class="chapter-grid">
+      <article class="chapter reveal">
+        <div class="chapter-bg">
+          <img src="./assets/outdoor-mindful.jpg" alt="Outdoor mindfulness session with the IgniteCon 2025 cohort">
+        </div>
+        <div class="chapter-content">
+          <div class="chapter-num">CH. 01</div>
+          <div class="chapter-body">
+            <div class="chapter-day">Wednesday</div>
+            <h3 class="chapter-name">THE AWAKENING</h3>
+            <p class="chapter-desc">Meet the version of yourself running the show without your permission. Confront the money story, the failure story, the worthiness story.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="chapter reveal">
+        <div class="chapter-bg">
+          <img src="./assets/workshop-wide.jpg" alt="Wide workshop with facilitator at IgniteCon 2025">
+        </div>
+        <div class="chapter-content">
+          <div class="chapter-num">CH. 02</div>
+          <div class="chapter-body">
+            <div class="chapter-day">Thursday</div>
+            <h3 class="chapter-name">THE KINDLING</h3>
+            <p class="chapter-desc">Take aim. Build the fire. Marketing, sales, product — sharpened in the field first, unpacked in the workshop after.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="chapter reveal">
+        <div class="chapter-bg">
+          <img src="./assets/outdoor-banner.jpg" alt="Outdoor cohort session with the IgniteCon banner">
+        </div>
+        <div class="chapter-content">
+          <div class="chapter-num">CH. 03</div>
+          <div class="chapter-body">
+            <div class="chapter-day">Friday</div>
+            <h3 class="chapter-name">THE BLAZE</h3>
+            <p class="chapter-desc">The deep end. Money. Compliance. Risk. Amazing Race in the morning, the Flame Awards on the deck under the stars.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="chapter reveal">
+        <div class="chapter-bg">
+          <img src="./assets/mic-leopard.jpg" alt="Founder speaking on mic at IgniteCon 2025">
+        </div>
+        <div class="chapter-content">
+          <div class="chapter-num">CH. 04</div>
+          <div class="chapter-body">
+            <div class="chapter-day">Saturday</div>
+            <h3 class="chapter-name">FIRE IN THE ROOM</h3>
+            <p class="chapter-desc">Buyers. Funders. Procurement. Your pitch plays over breakfast. You shake the hands that open the doors.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE TRIALS ═══ -->
+<section id="trials" class="trials">
+  <div class="container">
+    <div class="reveal trials-header">
+      <div class="eyebrow" style="margin-bottom: 24px;">The Trials</div>
+      <h2 class="section-title">SEVEN WORKSHOPS. TWO FIELD CHALLENGES. ZERO FLUFF.</h2>
+    </div>
+
+    <div class="trials-grid">
+      <article class="trial reveal">
+        <div class="trial-meta">
+          <div class="trial-num">01</div>
+          <div class="trial-topic">Marketing</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">THE BULLSEYE</h3>
+          <p class="trial-desc">Precision positioning. Customer-as-hero storytelling. The message that lands before it's heard.</p>
+        </div>
+      </article>
+      <article class="trial reveal">
+        <div class="trial-meta">
+          <div class="trial-num">02</div>
+          <div class="trial-topic">Sales</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">THE HUNT</h3>
+          <p class="trial-desc">B2B pipeline discipline. Objection handling. The systemic close, not the one-off hustle.</p>
+        </div>
+      </article>
+      <article class="trial reveal">
+        <div class="trial-meta">
+          <div class="trial-num">03</div>
+          <div class="trial-topic">Innovation I</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">THE SPARK</h3>
+          <p class="trial-desc">Problem discovery. Product-market fit for real. Where opportunity lives when the market is loud.</p>
+        </div>
+      </article>
+      <article class="trial reveal">
+        <div class="trial-meta">
+          <div class="trial-num">04</div>
+          <div class="trial-topic">Innovation II</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">THE FLAME</h3>
+          <p class="trial-desc">Validation. Iteration under pressure. The product that survives contact with real customers.</p>
+        </div>
+      </article>
+      <article class="trial reveal">
+        <div class="trial-meta">
+          <div class="trial-num">05</div>
+          <div class="trial-topic">Financial Readiness</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">FUEL THE FIRE</h3>
+          <p class="trial-desc">Unit economics. Investor-ready numbers. The financial story that opens the cheque book.</p>
+        </div>
+      </article>
+      <article class="trial reveal">
+        <div class="trial-meta">
+          <div class="trial-num">06</div>
+          <div class="trial-topic">Legal Compliance</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">THE FIREWALL</h3>
+          <p class="trial-desc">Contracts. IP. The legal armour a scaling business needs before it is tested.</p>
+        </div>
+      </article>
+      <article class="trial reveal">
+        <div class="trial-meta">
+          <div class="trial-num">07</div>
+          <div class="trial-topic">Risk &amp; Continuity</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">FIREPROOF</h3>
+          <p class="trial-desc">When the wildfire comes for the business, the founders who survive are the ones who prepared.</p>
+        </div>
+      </article>
+      <article class="trial field reveal">
+        <div class="trial-meta">
+          <div class="trial-num">FIELD I</div>
+          <div class="trial-topic">Outdoor</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">FIRE THE ARROW</h3>
+          <p class="trial-desc">Archery under the Cradle Moon sky. Feel targeting in your body before we frame it in words.</p>
+        </div>
+      </article>
+      <article class="trial field reveal">
+        <div class="trial-meta">
+          <div class="trial-num">FIELD II</div>
+          <div class="trial-topic">Outdoor</div>
+        </div>
+        <div class="trial-body">
+          <h3 class="trial-name">THE GAUNTLET</h3>
+          <p class="trial-desc">The Amazing Race across the reserve. Iterate, decide, adapt — with your cohort watching.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2025 IN FRAMES (3D Parallax Unfurling Gallery) ═══ -->
+<section class="frames" id="frames">
+  <div class="frames-intro">
+    <div class="container">
+      <div class="reveal frames-intro-inner">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 24px;">2025 in Frames</div>
+          <h2>MOMENTS FROM<br>LAST YEAR'S FIRE.</h2>
+        </div>
+        <p>Real cohort. Real facilitators. Real conversations that changed how founders show up. Scroll slowly.</p>
+      </div>
+    </div>
+  </div>
+  <div class="frames-sticky">
+    <div class="frames-banner" id="framesBanner">
+      <div class="frames-perspective">
+        <div class="frames-vignette"></div>
+        <div class="frames-vignette-sides"></div>
+        <div class="frames-3d" id="frames3d">
+          <div class="frames-col" data-col="1">
+            <div class="frames-card"><img src="./assets/fireside-night.jpg" alt="Fireside chat at IgniteCon 2025" loading="lazy"></div>
+            <div class="frames-card"><img src="./assets/workshop-wide.jpg" alt="Wide workshop shot at IgniteCon 2025" loading="lazy"></div>
+            <div class="frames-card"><img src="./assets/cohort-dance.jpg" alt="Cohort celebration at IgniteCon 2025" loading="lazy"></div>
+            <!-- duplicated for scroll loop -->
+            <div class="frames-card" aria-hidden="true"><img src="./assets/fireside-night.jpg" alt="" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/workshop-wide.jpg" alt="" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/cohort-dance.jpg" alt="" loading="lazy"></div>
+          </div>
+          <div class="frames-col" data-col="2">
+            <div class="frames-card"><img src="./assets/workshop-facilitator.jpg" alt="Workshop facilitator at IgniteCon 2025" loading="lazy"></div>
+            <div class="frames-card"><img src="./assets/outdoor-mindful.jpg" alt="Outdoor mindfulness session at IgniteCon 2025" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/workshop-facilitator.jpg" alt="" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/outdoor-mindful.jpg" alt="" loading="lazy"></div>
+          </div>
+          <div class="frames-col" data-col="3">
+            <div class="frames-card"><img src="./assets/cohort-back.jpg" alt="Participant deep in workshop at IgniteCon 2025" loading="lazy"></div>
+            <div class="frames-card"><img src="./assets/outdoor-banner.jpg" alt="Outdoor cohort session with IgniteCon banner" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/cohort-back.jpg" alt="" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/outdoor-banner.jpg" alt="" loading="lazy"></div>
+          </div>
+          <div class="frames-col" data-col="4">
+            <div class="frames-card"><img src="./assets/participant-mic.jpg" alt="Participant with microphone at IgniteCon 2025" loading="lazy"></div>
+            <div class="frames-card"><img src="./assets/mic-leopard.jpg" alt="Founder speaking on mic at IgniteCon 2025" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/participant-mic.jpg" alt="" loading="lazy"></div>
+            <div class="frames-card" aria-hidden="true"><img src="./assets/mic-leopard.jpg" alt="" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VIDEO SECTION ═══ -->
+<section class="video-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="video-eyebrow eyebrow" style="justify-content: center;">2025 In Motion</div>
+      <h2 class="video-title">WATCH <span class="accent">LAST YEAR</span> BURN.</h2>
+      <a href="https://www.youtube.com/watch?v=bHjo_ZKoCFQ&t=132s" target="_blank" rel="noopener" class="video-embed">
+        <img src="./assets/video-thumbnail.jpg" alt="IgniteCon 2025 recap — Ignite and Impact">
+        <div class="video-play" aria-hidden="true"></div>
+        <div class="video-caption">Play recap · 2:14</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROOF ═══ -->
+<section class="proof">
+  <div class="container">
+    <div class="reveal" style="margin-bottom: 60px;">
+      <div class="eyebrow" style="margin-bottom: 24px;">Proof</div>
+      <h2 class="section-title">THE 2025 RECEIPT.</h2>
+    </div>
+
+    <div class="reveal proof-grid">
+      <div class="proof-stats">
+        <div>
+          <span class="stat-value" data-count="84" data-suffix="%">0%</span>
+          <div class="stat-label">Investor engagement rate on live pitch day</div>
+        </div>
+        <div>
+          <span class="stat-value" data-count="19">0</span>
+          <div class="stat-label">Live pitches delivered to an active investor panel</div>
+        </div>
+        <div>
+          <span class="stat-value" data-count="5" data-suffix="/5">0/5</span>
+          <div class="stat-label">Average participant rating across all four days</div>
+        </div>
+        <div>
+          <span class="stat-value" data-count="16">0</span>
+          <div class="stat-label">Investor signals across ten pitches</div>
+        </div>
+      </div>
+      <div class="proof-image">
+        <img src="./assets/cohort-dance.jpg" alt="Cohort celebrating a breakthrough moment at IgniteCon 2025">
+      </div>
+    </div>
+
+    <div class="reveal testimonial">
+      <p class="testimonial-quote">"THE PROGRAMME EXCEEDED EXPECTATIONS, UNLOCKED PERSONAL BREAKTHROUGHS, AND DELIVERED KNOWLEDGE I WILL USE FOR YEARS TO COME."</p>
+      <p class="testimonial-attr">IgniteCon 2025 participant · Rated programme 5/5</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VENUE ═══ -->
+<section id="venue">
+  <div class="container">
+    <div class="reveal venue-header">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 24px;">The Setting</div>
+        <h2 class="section-title">CRADLE MOON. BUSH. FIRE. STARS.</h2>
+      </div>
+      <p>Four days at 26 Degrees South Hotel, deep in the Magaliesberg foothills. Rhino, giraffe and wildebeest across the reserve. A wooden deck overlooking the river, where the Flame Awards happen on Friday night.</p>
+    </div>
+
+    <div class="reveal venue-bento">
+      <div class="venue-tile venue-tile-hero">
+        <img src="./assets/venue-aerial.jpg" alt="Aerial view of 26 Degrees South Hotel and the mountain">
+        <div class="venue-tile-label">The Hotel</div>
+      </div>
+      <div class="venue-tile">
+        <img src="./assets/venue-pool.jpg" alt="Pool overlooking the mountain at sunset">
+        <div class="venue-tile-label">The Pool</div>
+      </div>
+      <div class="venue-tile">
+        <img src="./assets/venue-entrance.jpg" alt="Entrance of 26 Degrees South at dusk">
+        <div class="venue-tile-label">The Entrance</div>
+      </div>
+      <div class="venue-tile" style="grid-column: span 2;">
+        <img src="./assets/venue-boardroom.jpg" alt="Boardroom setup for workshop sessions">
+        <div class="venue-tile-label">The Boardroom</div>
+      </div>
+    </div>
+
+    <div class="reveal venue-facts">
+      <div>
+        <div class="venue-fact-label">Location</div>
+        <div class="venue-fact-value">MULDERSDRIFT</div>
+      </div>
+      <div>
+        <div class="venue-fact-label">Airport</div>
+        <div class="venue-fact-value">20 MIN LANSERIA</div>
+      </div>
+      <div>
+        <div class="venue-fact-label">Reserve</div>
+        <div class="venue-fact-value">CRADLE MOON</div>
+      </div>
+      <div>
+        <div class="venue-fact-label">Included</div>
+        <div class="venue-fact-value">3 NIGHTS + ALL MEALS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ESSENTIALS ═══ -->
+<section class="essentials">
+  <div class="container">
+    <div class="reveal" style="margin-bottom: 60px;">
+      <div class="eyebrow" style="margin-bottom: 24px;">The Essentials</div>
+      <h2 class="section-title">WHAT TO PACK. WHAT TO EXPECT.</h2>
+    </div>
+
+    <div class="essentials-grid">
+      <article class="essential reveal">
+        <div>
+          <div class="essential-label">Dress Code</div>
+          <h3 class="essential-title">BUSH CASUAL BY DAY</h3>
+        </div>
+        <p class="essential-body">Comfortable, layered, closed shoes. Smart casual for the Flame Awards on the deck. Leave the suit at home.</p>
+      </article>
+      <article class="essential reveal">
+        <div>
+          <div class="essential-label">To Bring</div>
+          <h3 class="essential-title">LAPTOP &amp; SUN</h3>
+        </div>
+        <p class="essential-body">Laptop and charger for workshops. Sunscreen, cap, water bottle, warm layer for evenings. ID and medical aid card.</p>
+      </article>
+      <article class="essential reveal">
+        <div>
+          <div class="essential-label">Included</div>
+          <h3 class="essential-title">BED, FOOD, WIFI</h3>
+        </div>
+        <p class="essential-body">Three nights at 26 Degrees South. All meals from Wed lunch through Sat breakfast. Coffee and tea on tap.</p>
+      </article>
+      <article class="essential reveal">
+        <div>
+          <div class="essential-label">Getting There</div>
+          <h3 class="essential-title">3.5 KM OF GRAVEL</h3>
+        </div>
+        <p class="essential-body">Lanseria is closest (20 min). 40 min from Sandton. Last stretch is gravel but any car makes it.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THREE DOORS ═══ -->
+<section id="doors" class="doors">
+  <div class="container">
+    <div class="reveal doors-header">
+      <div class="eyebrow">Choose Your Door</div>
+      <h2 class="doors-title">THREE WAYS INTO IGNITECON '26.</h2>
+    </div>
+
+    <div class="reveal door-grid">
+      <article class="door">
+        <div class="door-audience">For Founders</div>
+        <h3 class="door-title">RESERVE YOUR SEAT</h3>
+        <p class="door-desc">You've been selected for the 2026 cohort through your enterprise development programme. Confirm attendance, share your details, and get everything you need to arrive ready.</p>
+        <button type="button" class="btn btn-primary" data-modal-open="founderModal">RSVP <span class="arrow">→</span></button>
+      </article>
+      <article class="door">
+        <div class="door-audience">For Corporate Guests</div>
+        <h3 class="door-title">JOIN THE REVEAL</h3>
+        <p class="door-desc">Buyers, procurement, funders, ecosystem builders. Meet twenty growth-stage SA founders over a two-hour Saturday breakfast on the deck.</p>
+        <button type="button" class="btn btn-primary" data-modal-open="corporateModal">Register <span class="arrow">→</span></button>
+      </article>
+      <article class="door">
+        <div class="door-audience">For Facilitators</div>
+        <h3 class="door-title">HOLD A TRIAL</h3>
+        <p class="door-desc">Bring your expertise to one of the seven trials. Deep, practical content pitched at growth-stage SA founders trading R5M+ per year.</p>
+        <button type="button" class="btn btn-primary" data-modal-open="facilitatorModal">Apply <span class="arrow">→</span></button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="./assets/logo-white.png" alt="IgniteCon">
+        <p class="footer-desc">A programme of Unconventional CA. Fuel your business spark.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Contact</div>
+        <a href="mailto:eugene@uca.africa">eugene@uca.africa</a>
+        <a href="https://uca.africa" target="_blank" rel="noopener">uca.africa</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">The Details</div>
+        <p>28 — 31 October 2026</p>
+        <p>26 Degrees South Hotel</p>
+        <p>Muldersdrift, Gauteng</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 UNCONVENTIONAL CA. ALL RIGHTS RESERVED.</p>
+      <a href="https://uca.africa" style="color:inherit;text-decoration:none;">UCA.AFRICA</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Generate ember particles on hero
+  const embersEl = document.getElementById('embers');
+  if (embersEl) {
+    const count = 55;
+    const colors = ['#F37021', '#FCB614', '#B0480F', '#F37021'];
+    for (let i = 0; i < count; i++) {
+      const e = document.createElement('div');
+      e.className = 'ember';
+      e.style.left = Math.random() * 100 + '%';
+      e.style.animationDelay = Math.random() * 14 + 's';
+      e.style.animationDuration = (10 + Math.random() * 10) + 's';
+      const size = 2 + Math.random() * 3;
+      e.style.width = size + 'px';
+      e.style.height = size + 'px';
+      const c = colors[Math.floor(Math.random() * colors.length)];
+      e.style.background = c;
+      e.style.boxShadow = '0 0 ' + (4 + Math.random() * 8) + 'px ' + c;
+      embersEl.appendChild(e);
+    }
+  }
+
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Reveal on scroll with stagger
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'));
+        const idx = siblings.indexOf(el);
+        el.style.transitionDelay = (idx >= 0 ? Math.min(idx * 60, 240) : 0) + 'ms';
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  // Number counter
+  const counters = document.querySelectorAll('[data-count]');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1400;
+        const start = performance.now();
+        const step = (now) => {
+          const p = Math.min((now - start) / duration, 1);
+          // ease-out-quart
+          const eased = 1 - Math.pow(1 - p, 4);
+          const val = target * eased;
+          const isDecimal = target % 1 !== 0;
+          el.textContent = (isDecimal ? val.toFixed(1) : Math.floor(val)) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target + suffix;
+        };
+        requestAnimationFrame(step);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => counterIO.observe(el));
+  // ─── 3D Parallax Unfurling Gallery ───
+  (function() {
+    const section = document.getElementById('frames');
+    if (!section) return;
+    const banner = document.getElementById('framesBanner');
+    const grid = document.getElementById('frames3d');
+    const cols = section.querySelectorAll('.frames-col');
+    if (!banner || !grid || cols.length === 0) return;
+
+    // Skip animation for reduced motion users
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const colConfigs = [
+      { start: 0,   end: -40 },
+      { start: -40, end: 10  },
+      { start: 0,   end: -40 },
+      { start: -30, end: 20  },
+    ];
+
+    let targetProgress = 0;
+    let currentProgress = 0;
+
+    function updateProgress() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = section.offsetHeight - vh;
+      if (total <= 0) { targetProgress = 0; return; }
+      const scrolled = -rect.top;
+      targetProgress = Math.max(0, Math.min(1, scrolled / total));
+    }
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function mapClamped(v, inMin, inMax, outMin, outMax) {
+      const t = Math.max(0, Math.min(1, (v - inMin) / (inMax - inMin)));
+      return outMin + (outMax - outMin) * t;
+    }
+
+    function tick() {
+      updateProgress();
+      // spring-like smoothing (lerp toward target)
+      currentProgress += (targetProgress - currentProgress) * 0.12;
+      const p = currentProgress;
+
+      // Banner unfurl: 0 → 0.15
+      const bp = mapClamped(p, 0, 0.15, 0, 1);
+      const w  = lerp(90, 100, bp);
+      const h  = lerp(80, 100, bp);
+      const r  = lerp(48, 0, bp);
+      const bw = lerp(4, 0, bp);
+      banner.style.width = w + 'vw';
+      banner.style.height = h + 'vh';
+      banner.style.borderRadius = r + 'px';
+      banner.style.borderWidth = bw + 'px';
+
+      // 3D matrix: 0.15 → 1
+      const gp = mapClamped(p, 0.15, 1, 0, 1);
+      const rX = lerp(25, 4, gp);
+      const rY = lerp(-45, -8, gp);
+      const rZ = lerp(15, 2, gp);
+      const tZ = lerp(-800, 0, gp);
+      grid.style.transform =
+        'rotateX(' + rX + 'deg) rotateY(' + rY + 'deg) rotateZ(' + rZ + 'deg) translateZ(' + tZ + 'px)';
+
+      // Column parallax
+      cols.forEach(function(col, i) {
+        const cfg = colConfigs[i] || colConfigs[0];
+        const y = lerp(cfg.start, cfg.end, gp);
+        col.style.transform = 'translateY(' + y + '%)';
+      });
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+  // ─── Modals: open / close (Jotform iframes) ───
+  function initModals() {
+    const modals = document.querySelectorAll('.modal');
+    if (modals.length === 0) return;
+
+    let activeModal = null;
+    let lastFocused = null;
+
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (!m) return;
+      lastFocused = document.activeElement;
+      // Lazy-load the Jotform iframe on first open
+      const iframe = m.querySelector('.modal-iframe');
+      if (iframe && iframe.dataset.src && !iframe.src) {
+        iframe.src = iframe.dataset.src;
+      }
+      m.classList.add('open');
+      m.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      activeModal = m;
+      requestAnimationFrame(() => {
+        const closeBtn = m.querySelector('.modal-close');
+        if (closeBtn) closeBtn.focus();
+      });
+    }
+
+    function closeModal(m) {
+      m = m || activeModal;
+      if (!m) return;
+      m.classList.remove('open');
+      m.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      activeModal = null;
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    document.querySelectorAll('[data-modal-open]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(btn.dataset.modalOpen);
+      });
+    });
+
+    document.querySelectorAll('[data-modal-close]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal();
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && activeModal) closeModal();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initModals);
+  } else {
+    initModals();
+  }
+})();
+</script>
+<!-- ═══ MODALS (Jotform-hosted forms) ═══ -->
+
+<!-- Founder RSVP modal -->
+<div class="modal" id="founderModal" role="dialog" aria-labelledby="founderTitle" aria-hidden="true">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel modal-panel-jotform">
+    <button type="button" class="modal-close" aria-label="Close" data-modal-close>✕</button>
+    <div class="modal-header">
+      <div class="eyebrow">For Founders</div>
+      <h3 id="founderTitle">Reserve your seat</h3>
+    </div>
+    <iframe class="modal-iframe" data-src="https://form.jotform.com/262633400826049" title="Founder RSVP form" allow="geolocation; microphone; camera; fullscreen" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- Corporate Guest modal -->
+<div class="modal" id="corporateModal" role="dialog" aria-labelledby="corporateTitle" aria-hidden="true">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel modal-panel-jotform">
+    <button type="button" class="modal-close" aria-label="Close" data-modal-close>✕</button>
+    <div class="modal-header">
+      <div class="eyebrow">For Corporate Guests</div>
+      <h3 id="corporateTitle">Join The Reveal</h3>
+    </div>
+    <iframe class="modal-iframe" data-src="https://form.jotform.com/262633424538055" title="Corporate guest RSVP form" allow="geolocation; microphone; camera; fullscreen" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- Facilitator modal -->
+<div class="modal" id="facilitatorModal" role="dialog" aria-labelledby="facilitatorTitle" aria-hidden="true">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel modal-panel-jotform">
+    <button type="button" class="modal-close" aria-label="Close" data-modal-close>✕</button>
+    <div class="modal-header">
+      <div class="eyebrow">For Facilitators</div>
+      <h3 id="facilitatorTitle">Hold a trial</h3>
+    </div>
+    <iframe class="modal-iframe" data-src="https://form.jotform.com/262633897178069" title="Facilitator interest form" allow="geolocation; microphone; camera; fullscreen" loading="lazy"></iframe>
+  </div>
+</div>
+
+</body>
+</html>
