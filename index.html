@@ -1086,57 +1086,153 @@ section {
 }
 .door-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
-@media (max-width: 900px) { .door-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .door-grid { grid-template-columns: 1fr; gap: 16px; } }
 .door {
-  background: var(--bg);
-  color: var(--fg);
-  padding: 44px 36px;
-  border-radius: 6px;
+  padding: 56px 44px 48px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  min-height: 420px;
-  transition: transform 300ms var(--ease-out);
+  gap: 24px;
+  min-height: 520px;
+  transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
   position: relative;
   overflow: hidden;
 }
-.door::before {
-  content: '';
+.door-num {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, var(--ember-glow) 0%, transparent 50%);
-  opacity: 0;
-  transition: opacity 300ms var(--ease-out);
-  pointer-events: none;
-}
-@media (hover: hover) and (pointer: fine) {
-  .door:hover { transform: translateY(-6px); }
-  .door:hover::before { opacity: 1; }
+  top: 32px;
+  right: 36px;
+  font-family: var(--display);
+  font-size: 68px;
+  line-height: 1;
+  opacity: 0.15;
+  letter-spacing: -0.02em;
 }
 .door-audience {
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.26em;
-  color: var(--fire);
   text-transform: uppercase;
+  font-weight: 500;
+}
+.door-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-weight: 500;
+}
+.door-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 .door-title {
   font-family: var(--display);
-  font-size: 44px;
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  color: var(--fg);
+  font-size: 52px;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  margin-top: 4px;
 }
 .door-desc {
-  color: var(--fg-mute);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   flex-grow: 1;
 }
 .door .btn { align-self: flex-start; }
+
+/* ─── FOUNDER DOOR (Dark · Fire) ─── */
+.door-founder {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.door-founder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, var(--ember-glow) 0%, transparent 55%);
+  opacity: 0.4;
+  transition: opacity 300ms var(--ease-out);
+  pointer-events: none;
+}
+.door-founder .door-num { color: var(--fire); }
+.door-founder .door-audience { color: var(--fire); }
+.door-founder .door-tag {
+  background: rgba(243, 112, 33, 0.12);
+  color: var(--fire);
+  border: 1px solid rgba(243, 112, 33, 0.3);
+}
+.door-founder .door-tag::before { background: var(--fire); box-shadow: 0 0 8px var(--fire); }
+.door-founder .door-title { color: var(--fg); }
+.door-founder .door-desc { color: var(--fg-mute); }
+@media (hover: hover) and (pointer: fine) {
+  .door-founder:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(243, 112, 33, 0.25);
+  }
+  .door-founder:hover::before { opacity: 0.8; }
+}
+
+/* ─── CORPORATE DOOR (Cream · Gold) ─── */
+.door-corporate {
+  background: var(--fg);
+  color: var(--bg);
+  border: 1px solid rgba(10, 10, 10, 0.08);
+}
+.door-corporate::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -20%;
+  width: 140%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(252, 182, 20, 0.18) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out);
+  pointer-events: none;
+}
+.door-corporate .door-num { color: var(--fire-hot); opacity: 0.25; }
+.door-corporate .door-audience { color: var(--fire-deep); }
+.door-corporate .door-tag {
+  background: rgba(176, 72, 15, 0.08);
+  color: var(--fire-deep);
+  border: 1px solid rgba(176, 72, 15, 0.25);
+}
+.door-corporate .door-tag::before { background: var(--fire-hot); box-shadow: 0 0 8px var(--fire-hot); }
+.door-corporate .door-title { color: var(--bg); }
+.door-corporate .door-desc { color: rgba(10, 10, 10, 0.7); }
+.door-corporate .btn-corporate {
+  background: var(--bg);
+  color: var(--fg);
+  border-color: var(--bg);
+}
+@media (hover: hover) and (pointer: fine) {
+  .door-corporate .btn-corporate:hover {
+    background: var(--fire-deep);
+    border-color: var(--fire-deep);
+    color: var(--fg);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(10, 10, 10, 0.25);
+  }
+  .door-corporate:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(10, 10, 10, 0.15);
+  }
+  .door-corporate:hover::before { opacity: 1; }
+}
 
 /* ─── FOOTER ─── */
 footer {
@@ -1948,28 +2044,26 @@ body.modal-open { overflow: hidden; }
 <section id="doors" class="doors">
   <div class="container">
     <div class="reveal doors-header">
-      <div class="eyebrow">Choose Your Door</div>
-      <h2 class="doors-title">THREE WAYS INTO IGNITECON '26.</h2>
+      <div class="eyebrow">Two Ways In</div>
+      <h2 class="doors-title">CHOOSE YOUR MOMENT.</h2>
     </div>
 
     <div class="reveal door-grid">
-      <article class="door">
-        <div class="door-audience">For Founders</div>
+      <article class="door door-founder">
+        <div class="door-num">01</div>
+        <div class="door-audience">For Selected Founders</div>
+        <span class="door-tag">By Invitation · 21 Seats</span>
         <h3 class="door-title">RESERVE YOUR SEAT</h3>
-        <p class="door-desc">You've been selected for the 2026 cohort through your enterprise development programme. Confirm attendance, share your details, and get everything you need to arrive ready.</p>
-        <button type="button" class="btn btn-primary" data-modal-open="founderModal">RSVP <span class="arrow">→</span></button>
+        <p class="door-desc">You've been selected for the 2026 cohort through your enterprise development programme. Confirm attendance, share your details, and get everything you need to arrive ready for the full four days.</p>
+        <button type="button" class="btn btn-primary" data-modal-open="founderModal">Confirm my seat <span class="arrow">→</span></button>
       </article>
-      <article class="door">
+      <article class="door door-corporate">
+        <div class="door-num">02</div>
         <div class="door-audience">For Corporate Guests</div>
+        <span class="door-tag">Saturday 31 Oct · Breakfast</span>
         <h3 class="door-title">JOIN THE REVEAL</h3>
-        <p class="door-desc">Buyers, procurement, funders, ecosystem builders. Meet twenty growth-stage SA founders over a two-hour Saturday breakfast on the deck.</p>
-        <button type="button" class="btn btn-primary" data-modal-open="corporateModal">Register <span class="arrow">→</span></button>
-      </article>
-      <article class="door">
-        <div class="door-audience">For Facilitators</div>
-        <h3 class="door-title">HOLD A TRIAL</h3>
-        <p class="door-desc">Bring your expertise to one of the seven trials. Deep, practical content pitched at growth-stage SA founders trading R5M+ per year.</p>
-        <button type="button" class="btn btn-primary" data-modal-open="facilitatorModal">Apply <span class="arrow">→</span></button>
+        <p class="door-desc">Buyers, procurement heads, funders, ecosystem builders. Meet twenty growth-stage SA founders over a two-hour Saturday breakfast on the deck. Deals get made in this room.</p>
+        <button type="button" class="btn btn-primary btn-corporate" data-modal-open="corporateModal">Register as guest <span class="arrow">→</span></button>
       </article>
     </div>
   </div>
@@ -2241,19 +2335,6 @@ body.modal-open { overflow: hidden; }
       <h3 id="corporateTitle">Join The Reveal</h3>
     </div>
     <iframe class="modal-iframe" data-src="https://form.jotform.com/262633424538055" title="Corporate guest RSVP form" allow="geolocation; microphone; camera; fullscreen" loading="lazy"></iframe>
-  </div>
-</div>
-
-<!-- Facilitator modal -->
-<div class="modal" id="facilitatorModal" role="dialog" aria-labelledby="facilitatorTitle" aria-hidden="true">
-  <div class="modal-backdrop" data-modal-close></div>
-  <div class="modal-panel modal-panel-jotform">
-    <button type="button" class="modal-close" aria-label="Close" data-modal-close>✕</button>
-    <div class="modal-header">
-      <div class="eyebrow">For Facilitators</div>
-      <h3 id="facilitatorTitle">Hold a trial</h3>
-    </div>
-    <iframe class="modal-iframe" data-src="https://form.jotform.com/262633897178069" title="Facilitator interest form" allow="geolocation; microphone; camera; fullscreen" loading="lazy"></iframe>
   </div>
 </div>
 
