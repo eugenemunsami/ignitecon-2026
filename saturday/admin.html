@@ -14,7 +14,7 @@
     --bg:#0A0A0A; --panel:#141412; --panel-2:#1A1A17;
     --fire:#F37021; --fire-hot:#FCB614; --fire-deep:#B0480F;
     --cream:#F5F1E8; --mute:#8A857A; --line:rgba(255,255,255,0.08);
-    --good:#4ADE80; --warn:#FCB614; --bad:#F37021;
+    --good:#4ADE80; --warn:#FCB614; --bad:#F37021; --danger:#E53935;
   }
   html,body{margin:0;padding:0;background:var(--bg);color:var(--cream);font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh;}
   a{color:var(--fire-hot);text-decoration:none}
@@ -31,6 +31,12 @@
   .btn-primary:hover{background:var(--fire-hot);}
   .btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(255,255,255,0.14);}
   .btn-ghost:hover{border-color:var(--fire);color:var(--fire);}
+  .btn-warn{background:transparent;color:var(--warn);border:1px solid rgba(252,182,20,0.3);}
+  .btn-warn:hover{background:rgba(252,182,20,0.08);border-color:var(--warn);color:var(--warn);}
+  .btn-danger{background:transparent;color:var(--danger);border:1px solid rgba(229,57,53,0.3);}
+  .btn-danger:hover{background:rgba(229,57,53,0.1);border-color:var(--danger);color:var(--danger);}
+  .btn-danger.confirming{background:var(--danger);color:#fff;border-color:var(--danger);}
+  .btn:disabled{opacity:0.5;cursor:wait;}
 
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
   .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;}
@@ -67,7 +73,8 @@
   .empty p{font-size:14px;margin:0 0 20px;}
 
   .msg{padding:14px 20px;border-radius:4px;margin-bottom:12px;font-size:13px;}
-  .msg-err{background:rgba(243,112,33,0.1);border-left:3px solid var(--fire);color:var(--fire);}
+  .msg-err{background:rgba(229,57,53,0.1);border-left:3px solid var(--danger);color:var(--danger);}
+  .msg-ok{background:rgba(74,222,128,0.08);border-left:3px solid var(--good);color:var(--good);}
 
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:60px 24px;overflow-y:auto;}
   .modal-overlay.open{display:flex;}
@@ -81,9 +88,11 @@
   .field-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);padding-top:3px;}
   .field-value{color:var(--cream);word-break:break-word;}
   .field-value.empty-val{color:var(--mute);font-style:italic;}
-  .modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line);}
+  .modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line);align-items:center;}
+  .modal-actions .spacer{flex:1;}
   .copy-ok{color:var(--good);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;margin-left:8px;align-self:center;opacity:0;transition:opacity 200ms;}
   .copy-ok.show{opacity:1;}
+  .hint-text{font-size:11px;color:var(--mute);width:100%;margin-top:6px;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;}
 
   @media(max-width:900px){
     .stats{grid-template-columns:repeat(2,1fr);}
@@ -94,6 +103,8 @@
     .shell{padding:20px 14px 60px;}
     .modal{padding:28px 22px;}
     .field{grid-template-columns:110px 1fr;}
+    .modal-actions .spacer{display:none;}
+    .modal-actions{justify-content:flex-start;}
   }
 </style>
 </head>
@@ -156,22 +167,29 @@
     <div class="modal-sub" id="m-sub">—</div>
     <div id="m-fields"></div>
     <div class="modal-actions">
-      <button class="btn btn-primary" id="m-copy">Copy invite link</button>
+      <button class="btn btn-primary" id="m-copy">Copy link</button>
       <button class="btn btn-ghost" id="m-open">Open invite</button>
       <span class="copy-ok" id="m-copy-ok">Copied</span>
+      <span class="spacer"></span>
+      <button class="btn btn-warn" id="m-reset" style="display:none;">Reset RSVP</button>
+      <button class="btn btn-danger" id="m-delete">Delete invite</button>
+      <div class="hint-text" id="m-hint" style="display:none;"></div>
     </div>
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/saturday/js/config.js"></script>
-<script src="/saturday/js/common.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/common.js"></script>
 <script>
 (async function(){
   await requireAuth();
 
   const sb = getSupabase();
   let all = [];
+  let currentId = null;
+  let deleteArmed = false;
+  let resetArmed = false;
 
   const $ = (id) => document.getElementById(id);
   const tbody = $('tbody');
@@ -180,7 +198,11 @@
   function showErr(text){
     msg.innerHTML = `<div class="msg msg-err">${text}</div>`;
   }
-  function clearErr(){ msg.innerHTML = ''; }
+  function showOk(text){
+    msg.innerHTML = `<div class="msg msg-ok">${text}</div>`;
+    setTimeout(() => { if (msg.innerHTML.includes(text)) msg.innerHTML = ''; }, 3200);
+  }
+  function clearMsg(){ msg.innerHTML = ''; }
 
   function fmtShort(iso){
     if(!iso) return '—';
@@ -246,7 +268,7 @@
   }
 
   async function load(){
-    clearErr();
+    clearMsg();
     tbody.innerHTML = `<tr><td colspan="6" style="padding:60px 24px;text-align:center;color:var(--mute);">Loading…</td></tr>`;
     const { data, error } = await sb
       .from('ic_invites')
@@ -262,9 +284,24 @@
     render();
   }
 
+  function resetArmedState() {
+    deleteArmed = false;
+    resetArmed = false;
+    const dBtn = $('m-delete');
+    const rBtn = $('m-reset');
+    dBtn.textContent = 'Delete invite';
+    dBtn.classList.remove('confirming');
+    rBtn.textContent = 'Reset RSVP';
+    rBtn.classList.remove('confirming');
+    $('m-hint').style.display = 'none';
+  }
+
   function openDetail(id){
     const r = all.find(x => x.id === id);
     if(!r) return;
+    currentId = id;
+    resetArmedState();
+
     $('m-name').textContent = r.guest_name;
     $('m-sub').textContent = (r.guest_company ? r.guest_company + ' · ' : '') + 'invite ' + r.slug;
 
@@ -292,6 +329,9 @@
       return `<div class="field"><div class="field-label">${label}</div><div class="field-value ${empty ? 'empty-val':''}">${empty ? '—' : inner}</div></div>`;
     }).join('');
 
+    // Show Reset RSVP button only if there's an RSVP to clear
+    $('m-reset').style.display = (r.status !== 'pending') ? 'inline-flex' : 'none';
+
     $('m-copy').onclick = async () => {
       const ok = await copyToClipboard(url);
       if(ok){
@@ -304,8 +344,100 @@
     $('modal').classList.add('open');
   }
 
-  $('modal-close').onclick = () => $('modal').classList.remove('open');
-  $('modal').onclick = (e) => { if(e.target.id === 'modal') $('modal').classList.remove('open'); };
+  // Delete flow — two-click confirmation
+  $('m-delete').onclick = async () => {
+    if (!currentId) return;
+    const r = all.find(x => x.id === currentId);
+    if (!r) return;
+
+    if (!deleteArmed) {
+      deleteArmed = true;
+      resetArmed = false;
+      $('m-reset').textContent = 'Reset RSVP';
+      $('m-reset').classList.remove('confirming');
+      const btn = $('m-delete');
+      btn.textContent = 'Click again to confirm delete';
+      btn.classList.add('confirming');
+      $('m-hint').style.display = 'block';
+      $('m-hint').textContent = `This permanently removes "${r.guest_name}" and any RSVP data. The invite link will stop working.`;
+      setTimeout(() => { if (deleteArmed) resetArmedState(); }, 5000);
+      return;
+    }
+
+    const btn = $('m-delete');
+    btn.disabled = true;
+    btn.textContent = 'Deleting…';
+    const { error } = await sb.from('ic_invites').delete().eq('id', currentId);
+    btn.disabled = false;
+
+    if (error) {
+      showErr('Could not delete: ' + error.message);
+      resetArmedState();
+      return;
+    }
+    $('modal').classList.remove('open');
+    showOk(`Deleted invite for ${r.guest_name}.`);
+    currentId = null;
+    await load();
+  };
+
+  // Reset RSVP flow — two-click confirmation
+  $('m-reset').onclick = async () => {
+    if (!currentId) return;
+    const r = all.find(x => x.id === currentId);
+    if (!r) return;
+
+    if (!resetArmed) {
+      resetArmed = true;
+      deleteArmed = false;
+      $('m-delete').textContent = 'Delete invite';
+      $('m-delete').classList.remove('confirming');
+      const btn = $('m-reset');
+      btn.textContent = 'Click again to confirm reset';
+      btn.classList.add('confirming');
+      $('m-hint').style.display = 'block';
+      $('m-hint').textContent = `This clears the RSVP for "${r.guest_name}" and sets the invite back to pending. The invite link keeps working.`;
+      setTimeout(() => { if (resetArmed) resetArmedState(); }, 5000);
+      return;
+    }
+
+    const btn = $('m-reset');
+    btn.disabled = true;
+    btn.textContent = 'Resetting…';
+    const { error } = await sb.from('ic_invites').update({
+      status: 'pending',
+      rsvp_at: null,
+      rsvp_name: null,
+      rsvp_email: null,
+      rsvp_phone: null,
+      rsvp_company: null,
+      rsvp_role: null,
+      meal_preference: null,
+      dietary_requirements: null,
+      notes: null
+    }).eq('id', currentId);
+    btn.disabled = false;
+
+    if (error) {
+      showErr('Could not reset: ' + error.message);
+      resetArmedState();
+      return;
+    }
+    $('modal').classList.remove('open');
+    showOk(`RSVP reset for ${r.guest_name}.`);
+    currentId = null;
+    await load();
+  };
+
+  $('modal-close').onclick = () => { $('modal').classList.remove('open'); currentId = null; resetArmedState(); };
+  $('modal').onclick = (e) => { if(e.target.id === 'modal') { $('modal').classList.remove('open'); currentId = null; resetArmedState(); } };
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && $('modal').classList.contains('open')) {
+      $('modal').classList.remove('open');
+      currentId = null;
+      resetArmedState();
+    }
+  });
 
   $('search').oninput = render;
   $('status-filter').onchange = render;
