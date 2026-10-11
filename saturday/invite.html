@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>You're invited · IgniteCon 2026 — The Reveal</title>
+<meta property="og:title" content="You're invited to IgniteCon 2026 — The Reveal">
+<meta property="og:description" content="Saturday 31 October. Business breakfast with twenty growth-stage South African founders. 26 Degrees South Hotel.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --bg-elev: #141412;
+  --bg-warm: #1a1310;
+  --fg: #F5F1E8;
+  --fg-mute: #9c988e;
+  --fg-subtle: #6b665e;
+  --fire: #F37021;
+  --fire-hot: #FCB614;
+  --fire-deep: #B0480F;
+  --border: rgba(245, 241, 232, 0.08);
+  --border-hi: rgba(245, 241, 232, 0.18);
+  --display: 'Bebas Neue', Impact, sans-serif;
+  --body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; overflow-x: hidden; }
+
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 100%, rgba(243,112,33,0.14) 0%, transparent 55%), radial-gradient(ellipse at 50% 0%, rgba(252,182,20,0.05) 0%, transparent 50%);
+}
+
+.wrap { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 56px 32px 80px; }
+@media (max-width: 640px) { .wrap { padding: 40px 20px 60px; } }
+
+.brand { font-family: var(--display); font-size: 28px; color: var(--fire); letter-spacing: 0.03em; line-height: 1; margin-bottom: 56px; }
+.brand .yr { color: var(--fire-hot); }
+
+.loading { text-align: center; padding: 80px 0; color: var(--fg-subtle); font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+.error { text-align: center; padding: 80px 0; }
+.error h2 { font-family: var(--display); font-size: 48px; color: var(--fire); margin-bottom: 12px; }
+.error p { color: var(--fg-mute); }
+
+.view { opacity: 0; animation: fadeUp 800ms var(--ease) 100ms forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.3em; color: var(--fire); text-transform: uppercase; margin-bottom: 32px; display: flex; align-items: center; gap: 14px; }
+.eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--fire); }
+
+.hi { font-family: var(--display); font-size: clamp(56px, 11vw, 112px); font-weight: 400; line-height: 0.88; letter-spacing: -0.02em; color: var(--fg); margin-bottom: 8px; }
+.name { font-family: var(--body); font-size: clamp(32px, 5vw, 48px); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: var(--fire); margin-bottom: 48px; }
+
+.msg-box { position: relative; padding: 32px 36px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 56px; }
+.msg-box::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--fire); border-radius: 6px 0 0 6px; }
+.msg-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em; color: var(--fg-subtle); text-transform: uppercase; margin-bottom: 12px; }
+.msg-text { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 20px; line-height: 1.5; color: var(--fg); margin-bottom: 16px; white-space: pre-wrap; }
+.msg-sender { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: var(--fg-mute); text-transform: uppercase; }
+
+.about { color: var(--fg); font-size: 17px; line-height: 1.65; margin-bottom: 48px; }
+.about strong { color: var(--fg); font-weight: 500; }
+.about em { color: var(--fire); font-style: normal; }
+
+.details { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin-bottom: 56px; padding: 28px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.detail-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em; color: var(--fg-subtle); text-transform: uppercase; margin-bottom: 8px; }
+.detail-value { font-family: var(--display); font-size: 26px; color: var(--fg); letter-spacing: 0.01em; line-height: 1.1; }
+
+.cta-wrap { margin-bottom: 24px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 36px; font-family: var(--body); font-size: 14px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; border-radius: 4px; cursor: pointer; border: 1px solid; transition: all 200ms var(--ease); text-decoration: none; }
+.btn-primary { background: var(--fire); color: #1A0A00; border-color: var(--fire); }
+.btn-primary:hover { background: var(--fire-hot); border-color: var(--fire-hot); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(243,112,33,0.3); }
+.btn-ghost { background: transparent; color: var(--fg); border-color: var(--border-hi); }
+.btn-ghost:hover { border-color: var(--fire); color: var(--fire); }
+.btn-wide { width: 100%; }
+
+.rsvp-form { display: none; margin-top: 32px; padding-top: 48px; border-top: 1px solid var(--border); }
+.rsvp-form.show { display: block; }
+.rsvp-form h2 { font-family: var(--display); font-size: 56px; font-weight: 400; line-height: 1; color: var(--fire); margin-bottom: 16px; letter-spacing: -0.015em; }
+.rsvp-form .sub { color: var(--fg-mute); font-size: 15px; margin-bottom: 32px; }
+
+.form-fields { display: grid; gap: 20px; margin-bottom: 32px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 540px) { .row2 { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.24em; color: var(--fg-subtle); text-transform: uppercase; }
+.field label .req { color: var(--fire); }
+.field input, .field select, .field textarea {
+  padding: 14px 16px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--fg); font-family: var(--body); font-size: 15px; transition: border-color 150ms;
+}
+.field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F37021'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 12px; padding-right: 40px; }
+.field select option { background: var(--bg-elev); color: var(--fg); }
+.field textarea { resize: vertical; min-height: 80px; font-family: var(--body); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--fire); background: rgba(243,112,33,0.03); }
+
+.decline-wrap { display: none; margin-top: 32px; padding-top: 48px; border-top: 1px solid var(--border); }
+.decline-wrap.show { display: block; }
+.decline-wrap h2 { font-family: var(--display); font-size: 56px; font-weight: 400; line-height: 1; color: var(--fg-mute); margin-bottom: 16px; }
+
+.thanks { display: none; padding-top: 48px; margin-top: 48px; border-top: 1px solid var(--border); }
+.thanks.show { display: block; animation: fadeUp 600ms var(--ease) forwards; }
+.thanks h2 { font-family: var(--display); font-size: clamp(56px, 10vw, 96px); font-weight: 400; line-height: 0.95; color: var(--fire); margin-bottom: 16px; letter-spacing: -0.015em; }
+.thanks .lede { font-size: 18px; color: var(--fg); margin-bottom: 40px; max-width: 540px; }
+.thanks .next { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 6px; padding: 32px; margin-bottom: 24px; }
+.thanks .next h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.28em; color: var(--fire); text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
+.thanks .next p { color: var(--fg-mute); font-size: 15px; line-height: 1.65; margin-bottom: 20px; }
+.thanks .next .btn { margin-bottom: 10px; }
+.thanks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .thanks-grid { grid-template-columns: 1fr; } }
+
+.footer-brand { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--fg-subtle); text-transform: uppercase; }
+.footer-brand a { color: var(--fg-subtle); text-decoration: none; }
+.footer-brand a:hover { color: var(--fire); }
+
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--fire); color: #1A0A00; padding: 12px 24px; border-radius: 4px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; opacity: 0; transition: opacity 200ms; pointer-events: none; z-index: 1000; }
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="brand">IGNITECON <span class="yr">'26</span></div>
+
+  <div id="loading" class="loading">Loading your invite...</div>
+
+  <div id="errorView" class="error" style="display:none;">
+    <h2>Invite not found</h2>
+    <p>This invite link isn't valid. If you received it recently, please check with your sender.</p>
+  </div>
+
+  <div id="inviteView" style="display:none;">
+    <div class="view">
+      <div class="eyebrow">You are invited</div>
+      <div class="hi">Hi,</div>
+      <div class="name" id="guestName"></div>
+
+      <div class="msg-box">
+        <div class="msg-label">A note from <span id="senderNameLabel"></span></div>
+        <div class="msg-text" id="personalMessage"></div>
+        <div class="msg-sender">— <span id="senderName"></span></div>
+      </div>
+
+      <p class="about">
+        You're invited to <strong>IgniteCon 2026 — The Reveal</strong>: a curated business breakfast with twenty of South Africa's most ambitious growth-stage founders. <em>Deals get made in rooms like this.</em>
+      </p>
+
+      <div class="details">
+        <div>
+          <div class="detail-label">Date</div>
+          <div class="detail-value">Sat, 31 Oct 2026</div>
+        </div>
+        <div>
+          <div class="detail-label">Time</div>
+          <div class="detail-value">08:30 — 11:00</div>
+        </div>
+        <div>
+          <div class="detail-label">Venue</div>
+          <div class="detail-value">26 Degrees South</div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <button class="btn btn-primary btn-wide" id="rsvpYes">Yes, I'll be there →</button>
+      </div>
+      <div style="text-align:center;">
+        <button class="btn btn-ghost" id="rsvpNo" style="padding:12px 20px;font-size:12px;letter-spacing:0.14em;border:none;color:var(--fg-subtle);">Sorry, can't make it</button>
+      </div>
+
+      <div class="rsvp-form" id="rsvpForm">
+        <h2>A few quick details.</h2>
+        <p class="sub">So we can prepare the room properly for you.</p>
+
+        <div class="form-fields">
+          <div class="row2">
+            <div class="field">
+              <label>Confirm your name <span class="req">*</span></label>
+              <input id="fName" type="text" required>
+            </div>
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input id="fEmail" type="email" required>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label>Phone <span class="req">*</span></label>
+              <input id="fPhone" type="tel" required>
+            </div>
+            <div class="field">
+              <label>Company</label>
+              <input id="fCompany" type="text">
+            </div>
+          </div>
+          <div class="field">
+            <label>Your role / title</label>
+            <input id="fRole" type="text" placeholder="e.g. Head of Procurement">
+          </div>
+          <div class="field">
+            <label>Meal preference</label>
+            <select id="fMeal">
+              <option value="">No preference</option>
+              <option value="Standard">Standard breakfast</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+              <option value="Halal">Halal</option>
+              <option value="Kosher">Kosher</option>
+              <option value="Pescatarian">Pescatarian</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Allergies or additional dietary notes</label>
+            <textarea id="fDietary" placeholder="Nut allergy, gluten-free, lactose intolerant, etc."></textarea>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-wide" id="submitRsvp">Confirm attendance →</button>
+      </div>
+
+      <div class="decline-wrap" id="declineWrap">
+        <h2>No problem.</h2>
+        <p class="sub" style="margin-bottom:32px;">We'll keep you in mind for the next one. Would you like to leave a quick note for the sender?</p>
+        <div class="field" style="margin-bottom:24px;">
+          <textarea id="declineNote" placeholder="Optional"></textarea>
+        </div>
+        <button class="btn btn-ghost btn-wide" id="submitDecline">Send</button>
+      </div>
+
+      <div class="thanks" id="thanksAccepted">
+        <h2>You're in.</h2>
+        <p class="lede">We'll see you on Saturday 31 October at 26 Degrees South. In the meantime, add it to your calendar and save the directions.</p>
+
+        <div class="next">
+          <h3>Save the details</h3>
+          <p>Download the calendar invite so it's locked into your diary with reminders.</p>
+          <div class="thanks-grid">
+            <button class="btn btn-primary" id="icsBtn">+ Add to calendar</button>
+            <a class="btn btn-ghost" id="mapsBtn" target="_blank">Open in Maps</a>
+          </div>
+        </div>
+
+        <div class="next">
+          <h3>What to expect</h3>
+          <p>08:30 arrivals and coffee. 09:00 breakfast begins with the live elevator pitches from the twenty founders. 10:00 open networking. 11:00 close. Dress code is smart casual. On-site parking.</p>
+        </div>
+
+        <div class="next" style="border-color:var(--fire);">
+          <h3 style="color:var(--fire);">Travel notes</h3>
+          <p><strong style="color:var(--fg);">26 Degrees South Hotel</strong><br>
+          Cradle Moon Conservancy, Muldersdrift<br>
+          20 minutes from Lanseria · 40 minutes from Sandton</p>
+          <p style="font-size:13px;color:var(--fg-subtle);">The last 3.5 km is on gravel road but any car makes it comfortably.</p>
+        </div>
+      </div>
+
+      <div class="thanks" id="thanksDeclined">
+        <h2>Thanks for letting us know.</h2>
+        <p class="lede">Your sender will see your note. We hope to connect at a future event.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-brand">
+    <span>IgniteCon 2026 · A programme of Unconventional CA</span>
+    <a href="https://uca.africa" target="_blank">uca.africa</a>
+  </div>
+</div>
+
+<div class="toast" id="toast">Saved</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/saturday/js/config.js"></script>
+<script src="/saturday/js/common.js"></script>
+<script>
+let invite = null;
+
+function getSlug() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('i') || params.get('slug') || null;
+}
+
+async function loadInvite() {
+  const slug = getSlug();
+  if (!slug) {
+    showError();
+    return;
+  }
+  const sb = getSupabase();
+  const { data, error } = await sb.from('ic_invites').select('*').eq('slug', slug).maybeSingle();
+  if (error || !data) {
+    showError();
+    return;
+  }
+  invite = data;
+  renderInvite(data);
+}
+
+function showError() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('errorView').style.display = 'block';
+}
+
+function renderInvite(d) {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('inviteView').style.display = 'block';
+
+  document.getElementById('guestName').textContent = d.guest_name + '.';
+  document.getElementById('personalMessage').textContent = d.personal_message || '';
+  document.getElementById('senderName').textContent = d.sender_name || 'The UCA Team';
+  document.getElementById('senderNameLabel').textContent = d.sender_name || 'the UCA team';
+
+  document.getElementById('fName').value = d.rsvp_name || d.guest_name;
+  document.getElementById('fCompany').value = d.rsvp_company || d.guest_company || '';
+  document.getElementById('fEmail').value = d.rsvp_email || '';
+  document.getElementById('fPhone').value = d.rsvp_phone || '';
+  document.getElementById('fRole').value = d.rsvp_role || '';
+  document.getElementById('fMeal').value = d.meal_preference || '';
+  document.getElementById('fDietary').value = d.dietary_requirements || '';
+
+  document.getElementById('mapsBtn').href = window.IC_CONFIG.event.mapsUrl;
+
+  if (d.status === 'accepted') {
+    showAccepted();
+  } else if (d.status === 'declined') {
+    showDeclined();
+  }
+
+  document.getElementById('rsvpYes').onclick = showRsvpForm;
+  document.getElementById('rsvpNo').onclick = showDeclineForm;
+  document.getElementById('submitRsvp').onclick = submitAccept;
+  document.getElementById('submitDecline').onclick = submitDecline;
+  document.getElementById('icsBtn').onclick = () => downloadICS(invite);
+}
+
+function showRsvpForm() {
+  document.getElementById('rsvpForm').classList.add('show');
+  document.getElementById('declineWrap').classList.remove('show');
+  document.getElementById('rsvpForm').scrollIntoView({ behavior: 'smooth' });
+}
+
+function showDeclineForm() {
+  document.getElementById('declineWrap').classList.add('show');
+  document.getElementById('rsvpForm').classList.remove('show');
+  document.getElementById('declineWrap').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function submitAccept() {
+  const name = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  if (!name || !email || !phone) {
+    toast('Please fill name, email and phone');
+    return;
+  }
+
+  const btn = document.getElementById('submitRsvp');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  const sb = getSupabase();
+  const { data, error } = await sb.from('ic_invites').update({
+    status: 'accepted',
+    rsvp_at: new Date().toISOString(),
+    rsvp_name: name,
+    rsvp_email: email,
+    rsvp_phone: phone,
+    rsvp_company: document.getElementById('fCompany').value.trim() || null,
+    rsvp_role: document.getElementById('fRole').value.trim() || null,
+    meal_preference: document.getElementById('fMeal').value || null,
+    dietary_requirements: document.getElementById('fDietary').value.trim() || null
+  }).eq('slug', invite.slug).select().single();
+
+  btn.disabled = false;
+  btn.textContent = 'Confirm attendance →';
+
+  if (error) {
+    toast('Something went wrong');
+    return;
+  }
+  invite = data;
+  showAccepted();
+}
+
+async function submitDecline() {
+  const note = document.getElementById('declineNote').value.trim();
+  const btn = document.getElementById('submitDecline');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const sb = getSupabase();
+  const { data, error } = await sb.from('ic_invites').update({
+    status: 'declined',
+    rsvp_at: new Date().toISOString(),
+    notes: note || null
+  }).eq('slug', invite.slug).select().single();
+
+  btn.disabled = false;
+  btn.textContent = 'Send';
+
+  if (error) {
+    toast('Something went wrong');
+    return;
+  }
+  invite = data;
+  showDeclined();
+}
+
+function showAccepted() {
+  document.getElementById('rsvpForm').classList.remove('show');
+  document.getElementById('declineWrap').classList.remove('show');
+  document.getElementById('rsvpYes').style.display = 'none';
+  document.getElementById('rsvpNo').style.display = 'none';
+  document.querySelector('.cta-wrap').style.display = 'none';
+  document.getElementById('thanksAccepted').classList.add('show');
+  setTimeout(() => document.getElementById('thanksAccepted').scrollIntoView({ behavior: 'smooth' }), 100);
+}
+
+function showDeclined() {
+  document.getElementById('rsvpForm').classList.remove('show');
+  document.getElementById('declineWrap').classList.remove('show');
+  document.getElementById('rsvpYes').style.display = 'none';
+  document.getElementById('rsvpNo').style.display = 'none';
+  document.querySelector('.cta-wrap').style.display = 'none';
+  document.getElementById('thanksDeclined').classList.add('show');
+  setTimeout(() => document.getElementById('thanksDeclined').scrollIntoView({ behavior: 'smooth' }), 100);
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+loadInvite();
+</script>
+</body>
+</html>
