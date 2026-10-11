@@ -95,7 +95,7 @@ function buildICS(invite) {
     `DTSTART:${dt(start)}`,
     `DTEND:${dt(end)}`,
     `SUMMARY:IgniteCon 2026 — The Reveal`,
-    `DESCRIPTION:Business breakfast with twenty growth-stage South African founders.\\nArrival from 08:30. Welcome at 08:30. Breakfast and pitches from 09:00. Networking from 10:00. Dress code: smart casual.`,
+    `DESCRIPTION:Business breakfast with growth-stage South African founders.\\nArrival from 08:30. Welcome at 08:30. Breakfast and pitches from 09:00. Networking from 10:00. Dress code: smart casual.`,
     `LOCATION:26 Degrees South Hotel\\, Cradle Moon Conservancy\\, Muldersdrift\\, Gauteng`,
     `URL:${window.location.origin}/i/${invite.slug}`,
     'BEGIN:VALARM',
