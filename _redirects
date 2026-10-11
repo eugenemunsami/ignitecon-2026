@@ -1,0 +1,7 @@
+# Pretty URLs for Saturday breakfast invite system
+/i/*                /saturday/invite.html?i=:splat    200
+/invite/*           /saturday/invite.html?i=:splat    200
+/saturday           /saturday/create.html             200
+/saturday/          /saturday/create.html             200
+/saturday/admin     /saturday/admin.html              200
+/saturday/create    /saturday/create.html             200
