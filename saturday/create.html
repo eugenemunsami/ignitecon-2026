@@ -179,7 +179,7 @@ h1 { font-family: var(--display); font-size: clamp(44px, 7vw, 72px); font-weight
               <div class="card-eyebrow">You are invited</div>
               <div class="card-you">To join us,</div>
               <div class="card-guest" id="cGuest">—</div>
-              <div class="card-to">for an exclusive business breakfast with twenty of South Africa's most ambitious growth-stage founders.</div>
+              <div class="card-to">for an exclusive business breakfast with South Africa's most ambitious growth-stage founders.</div>
               <div class="card-divider"></div>
               <div class="card-details">
                 <div class="card-detail">
@@ -321,7 +321,7 @@ function renderCard(invite) {
 
   const waMsg = encodeURIComponent(
     `Hi ${invite.guest_name}, you're invited to IgniteCon 2026 — The Reveal.\n\n` +
-    `Saturday 31 October, 08:30 — a business breakfast with twenty growth-stage SA founders at 26 Degrees South Hotel.\n\n` +
+    `Saturday 31 October, 08:30 — a business breakfast with growth-stage SA founders at 26 Degrees South Hotel.\n\n` +
     `Full details and RSVP: ${url}`
   );
   document.getElementById('whatsAppBtn').href = `https://wa.me/?text=${waMsg}`;
@@ -332,7 +332,7 @@ function renderCard(invite) {
     `You're invited to IgniteCon 2026 — The Reveal.\n\n` +
     `Saturday 31 October, 08:30 — 11:00\n` +
     `26 Degrees South Hotel, Muldersdrift\n\n` +
-    `A business breakfast with twenty growth-stage South African founders.\n\n` +
+    `A business breakfast with growth-stage South African founders.\n\n` +
     `Full details and RSVP: ${url}\n\n` +
     `Looking forward to it.\n\n` +
     `${invite.sender_name}\n` +
