@@ -281,7 +281,12 @@ let invite = null;
 
 function getSlug() {
   const params = new URLSearchParams(window.location.search);
-  return params.get('i') || params.get('slug') || null;
+  const fromQuery = params.get('i') || params.get('slug');
+  if (fromQuery) return fromQuery;
+  // Netlify rewrites /i/<slug> internally but keeps the pretty URL in the browser,
+  // so the ?i=... from _redirects isn't visible to URLSearchParams. Parse the path.
+  const m = window.location.pathname.match(/^\/(?:i|invite)\/([^\/?#]+)/);
+  return m ? m[1] : null;
 }
 
 async function loadInvite() {
