@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>IgniteCon 2026 — Invite Dashboard</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*:before,*:after{box-sizing:border-box}
+  :root{
+    --bg:#0A0A0A; --panel:#141412; --panel-2:#1A1A17;
+    --fire:#F37021; --fire-hot:#FCB614; --fire-deep:#B0480F;
+    --cream:#F5F1E8; --mute:#8A857A; --line:rgba(255,255,255,0.08);
+    --good:#4ADE80; --warn:#FCB614; --bad:#F37021;
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--cream);font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh;}
+  a{color:var(--fire-hot);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .shell{max-width:1400px;margin:0 auto;padding:32px 24px 80px;}
+  .top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px;}
+  .brand{font-family:'Bebas Neue',Impact,sans-serif;font-size:38px;color:var(--fire);letter-spacing:0.03em;line-height:1;margin:0;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--fire);text-transform:uppercase;margin-bottom:4px;}
+  .sub{color:var(--mute);font-size:13px;margin-top:6px;}
+  .top-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:4px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background 150ms,border-color 150ms,color 150ms;}
+  .btn-primary{background:var(--fire);color:#1A0A00;}
+  .btn-primary:hover{background:var(--fire-hot);}
+  .btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(255,255,255,0.14);}
+  .btn-ghost:hover{border-color:var(--fire);color:var(--fire);}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;}
+  .stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;}
+  .stat-value{font-family:'Bebas Neue',Impact,sans-serif;font-size:44px;line-height:1;letter-spacing:0.02em;}
+  .stat-sent .stat-value{color:var(--cream);}
+  .stat-acc .stat-value{color:var(--good);}
+  .stat-pen .stat-value{color:var(--warn);}
+  .stat-dec .stat-value{color:var(--bad);}
+
+  .toolbar{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+  .search{flex:1;min-width:200px;padding:11px 14px;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--cream);font-size:13px;font-family:inherit;}
+  .search:focus{outline:none;border-color:var(--fire);}
+  .filter{padding:11px 14px;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--cream);font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;}
+  .filter:focus{outline:none;border-color:var(--fire);}
+
+  .table-wrap{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{background:var(--panel-2);text-align:left;padding:14px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;border-bottom:1px solid var(--line);white-space:nowrap;}
+  td{padding:14px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:last-child td{border-bottom:0;}
+  tr.row{cursor:pointer;transition:background 120ms;}
+  tr.row:hover{background:rgba(243,112,33,0.04);}
+  .guest-name{font-weight:600;color:var(--cream);}
+  .guest-co{color:var(--mute);font-size:12px;margin-top:2px;}
+  .pill{display:inline-block;padding:4px 10px;border-radius:100px;font-size:10px;font-family:'JetBrains Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;}
+  .pill-pending{background:rgba(252,182,20,0.12);color:var(--warn);border:1px solid rgba(252,182,20,0.3);}
+  .pill-accepted{background:rgba(74,222,128,0.12);color:var(--good);border:1px solid rgba(74,222,128,0.3);}
+  .pill-declined{background:rgba(243,112,33,0.12);color:var(--bad);border:1px solid rgba(243,112,33,0.3);}
+  .mono{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);letter-spacing:0.05em;}
+
+  .empty{padding:60px 24px;text-align:center;color:var(--mute);}
+  .empty h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:var(--cream);letter-spacing:0.03em;margin:0 0 8px;}
+  .empty p{font-size:14px;margin:0 0 20px;}
+
+  .msg{padding:14px 20px;border-radius:4px;margin-bottom:12px;font-size:13px;}
+  .msg-err{background:rgba(243,112,33,0.1);border-left:3px solid var(--fire);color:var(--fire);}
+
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:60px 24px;overflow-y:auto;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:var(--panel);border:1px solid var(--line);border-radius:8px;max-width:620px;width:100%;padding:36px;position:relative;}
+  .modal-close{position:absolute;top:16px;right:16px;background:transparent;border:0;color:var(--mute);font-size:22px;cursor:pointer;line-height:1;padding:6px 10px;}
+  .modal-close:hover{color:var(--cream);}
+  .modal h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:34px;color:var(--fire);letter-spacing:0.03em;margin:0 0 4px;line-height:1;}
+  .modal-sub{color:var(--mute);font-size:13px;margin-bottom:24px;}
+  .field{display:grid;grid-template-columns:140px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;}
+  .field:last-of-type{border-bottom:0;}
+  .field-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);padding-top:3px;}
+  .field-value{color:var(--cream);word-break:break-word;}
+  .field-value.empty-val{color:var(--mute);font-style:italic;}
+  .modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line);}
+  .copy-ok{color:var(--good);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;margin-left:8px;align-self:center;opacity:0;transition:opacity 200ms;}
+  .copy-ok.show{opacity:1;}
+
+  @media(max-width:900px){
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .brand{font-size:30px;}
+    th,td{padding:10px 10px;font-size:12px;}
+    .guest-co,.mono{font-size:11px;}
+    .hide-sm{display:none;}
+    .shell{padding:20px 14px 60px;}
+    .modal{padding:28px 22px;}
+    .field{grid-template-columns:110px 1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div>
+      <div class="eyebrow">IgniteCon '26 · The Reveal</div>
+      <h1 class="brand">INVITE DASHBOARD</h1>
+      <div class="sub">Saturday breakfast — <a href="/saturday/create">create a new invite</a></div>
+    </div>
+    <div class="top-actions">
+      <button class="btn btn-ghost" id="refresh-btn">↻ Refresh</button>
+      <button class="btn btn-primary" id="csv-btn">Export CSV</button>
+    </div>
+  </div>
+
+  <div id="msg"></div>
+
+  <div class="stats">
+    <div class="stat stat-sent"><div class="stat-label">Sent</div><div class="stat-value" id="st-sent">—</div></div>
+    <div class="stat stat-acc"><div class="stat-label">Accepted</div><div class="stat-value" id="st-acc">—</div></div>
+    <div class="stat stat-pen"><div class="stat-label">Pending</div><div class="stat-value" id="st-pen">—</div></div>
+    <div class="stat stat-dec"><div class="stat-label">Declined</div><div class="stat-value" id="st-dec">—</div></div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" class="search" id="search" placeholder="Search by name, company, sender, email…"/>
+    <select class="filter" id="status-filter">
+      <option value="all">All statuses</option>
+      <option value="accepted">Accepted</option>
+      <option value="pending">Pending</option>
+      <option value="declined">Declined</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Guest</th>
+          <th>Status</th>
+          <th class="hide-sm">Sender</th>
+          <th class="hide-sm">Sent</th>
+          <th class="hide-sm">RSVP</th>
+          <th class="hide-sm">Meal</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr><td colspan="6" style="padding:60px 24px;text-align:center;color:var(--mute);">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close">×</button>
+    <h3 id="m-name">—</h3>
+    <div class="modal-sub" id="m-sub">—</div>
+    <div id="m-fields"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="m-copy">Copy invite link</button>
+      <button class="btn btn-ghost" id="m-open">Open invite</button>
+      <span class="copy-ok" id="m-copy-ok">Copied</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/saturday/js/config.js"></script>
+<script src="/saturday/js/common.js"></script>
+<script>
+(async function(){
+  await requireAuth();
+
+  const sb = getSupabase();
+  let all = [];
+
+  const $ = (id) => document.getElementById(id);
+  const tbody = $('tbody');
+  const msg = $('msg');
+
+  function showErr(text){
+    msg.innerHTML = `<div class="msg msg-err">${text}</div>`;
+  }
+  function clearErr(){ msg.innerHTML = ''; }
+
+  function fmtShort(iso){
+    if(!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-ZA',{day:'2-digit',month:'short'}) +
+           ' ' + d.toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'});
+  }
+
+  function pill(status){
+    if(status === 'accepted') return '<span class="pill pill-accepted">Accepted</span>';
+    if(status === 'declined') return '<span class="pill pill-declined">Declined</span>';
+    return '<span class="pill pill-pending">Pending</span>';
+  }
+
+  function escapeHtml(s){
+    if(s==null) return '';
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+
+  function render(){
+    const q = $('search').value.trim().toLowerCase();
+    const f = $('status-filter').value;
+    const list = all.filter(r => {
+      if(f !== 'all' && r.status !== f) return false;
+      if(!q) return true;
+      const blob = [r.guest_name, r.guest_company, r.sender_name, r.sender_email, r.rsvp_email, r.rsvp_phone].filter(Boolean).join(' ').toLowerCase();
+      return blob.includes(q);
+    });
+
+    if(list.length === 0){
+      tbody.innerHTML = `<tr><td colspan="6"><div class="empty"><h3>No invites yet</h3><p>Head to the create page to send your first invite.</p><a href="/saturday/create" class="btn btn-primary" style="display:inline-flex;">Create invite →</a></div></td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = list.map(r => `
+      <tr class="row" data-id="${r.id}">
+        <td>
+          <div class="guest-name">${escapeHtml(r.guest_name)}</div>
+          ${r.guest_company ? `<div class="guest-co">${escapeHtml(r.guest_company)}</div>` : ''}
+        </td>
+        <td>${pill(r.status)}</td>
+        <td class="hide-sm">${escapeHtml(r.sender_name || '—')}</td>
+        <td class="hide-sm mono">${fmtShort(r.created_at)}</td>
+        <td class="hide-sm mono">${fmtShort(r.rsvp_at)}</td>
+        <td class="hide-sm">${escapeHtml(r.meal_preference || '—')}</td>
+      </tr>
+    `).join('');
+
+    tbody.querySelectorAll('tr.row').forEach(tr => {
+      tr.onclick = () => openDetail(tr.dataset.id);
+    });
+  }
+
+  function renderStats(){
+    const n = all.length;
+    const acc = all.filter(r => r.status === 'accepted').length;
+    const dec = all.filter(r => r.status === 'declined').length;
+    const pen = all.filter(r => r.status === 'pending').length;
+    $('st-sent').textContent = n;
+    $('st-acc').textContent = acc;
+    $('st-pen').textContent = pen;
+    $('st-dec').textContent = dec;
+  }
+
+  async function load(){
+    clearErr();
+    tbody.innerHTML = `<tr><td colspan="6" style="padding:60px 24px;text-align:center;color:var(--mute);">Loading…</td></tr>`;
+    const { data, error } = await sb
+      .from('ic_invites')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if(error){
+      showErr('Could not load invites: ' + error.message);
+      tbody.innerHTML = '';
+      return;
+    }
+    all = data || [];
+    renderStats();
+    render();
+  }
+
+  function openDetail(id){
+    const r = all.find(x => x.id === id);
+    if(!r) return;
+    $('m-name').textContent = r.guest_name;
+    $('m-sub').textContent = (r.guest_company ? r.guest_company + ' · ' : '') + 'invite ' + r.slug;
+
+    const url = inviteUrl(r.slug);
+    const rows = [
+      ['Status', pill(r.status), true],
+      ['Sender', r.sender_name || ''],
+      ['Sender email', r.sender_email || ''],
+      ['Personal message', r.personal_message || ''],
+      ['Sent', fmtShort(r.created_at)],
+      ['RSVP at', fmtShort(r.rsvp_at)],
+      ['RSVP name', r.rsvp_name || ''],
+      ['Email', r.rsvp_email || ''],
+      ['Phone', r.rsvp_phone || ''],
+      ['Company', r.rsvp_company || ''],
+      ['Role', r.rsvp_role || ''],
+      ['Meal', r.meal_preference || ''],
+      ['Dietary', r.dietary_requirements || ''],
+      ['Notes', r.notes || ''],
+      ['Invite URL', `<a href="${url}" target="_blank">${url}</a>`, true],
+    ];
+    $('m-fields').innerHTML = rows.map(([label, val, raw]) => {
+      const empty = !val || val === '—';
+      const inner = raw ? val : escapeHtml(val);
+      return `<div class="field"><div class="field-label">${label}</div><div class="field-value ${empty ? 'empty-val':''}">${empty ? '—' : inner}</div></div>`;
+    }).join('');
+
+    $('m-copy').onclick = async () => {
+      const ok = await copyToClipboard(url);
+      if(ok){
+        $('m-copy-ok').classList.add('show');
+        setTimeout(() => $('m-copy-ok').classList.remove('show'), 1600);
+      }
+    };
+    $('m-open').onclick = () => window.open(url, '_blank');
+
+    $('modal').classList.add('open');
+  }
+
+  $('modal-close').onclick = () => $('modal').classList.remove('open');
+  $('modal').onclick = (e) => { if(e.target.id === 'modal') $('modal').classList.remove('open'); };
+
+  $('search').oninput = render;
+  $('status-filter').onchange = render;
+  $('refresh-btn').onclick = load;
+
+  $('csv-btn').onclick = () => {
+    if(all.length === 0) return;
+    const cols = ['guest_name','guest_company','status','sender_name','sender_email','created_at','rsvp_at','rsvp_name','rsvp_email','rsvp_phone','rsvp_company','rsvp_role','meal_preference','dietary_requirements','personal_message','notes','slug'];
+    const csvEscape = (v) => {
+      if(v == null) return '';
+      const s = String(v);
+      if(/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+      return s;
+    };
+    const lines = [cols.join(',')].concat(
+      all.map(r => cols.map(c => csvEscape(r[c])).join(','))
+    );
+    const blob = new Blob([lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    const today = new Date().toISOString().slice(0,10);
+    a.download = `ignitecon-saturday-invites-${today}.csv`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+  };
+
+  await load();
+})();
+</script>
+</body>
+</html>
